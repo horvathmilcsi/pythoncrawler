@@ -11,15 +11,19 @@ soup = BeautifulSoup(html_content, 'html.parser')
 
 h2s = soup.find_all('h2') # Az összes H2 címke kiválasztása
 
-for x in h2s:
-  h2 = h2s.pop()
-  print("*******************")
-#  print(h2)
-  a_link = h2.find('a')
-  if a_link is None:
-    print("!!!!!!!!!!!!!!!!!!")
-    a_text = h2.getText();
-  else:
-    a_text = a_link.getText();
-  print(a_text)
+with open('milan_horvath_index.txt', 'w') as f:
+    for x in h2s:
+        h2 = h2s.pop()
+        print("*******************")
+        f.write("*******************\n")
+        #  print(h2)
+        a_link = h2.find('a')
+        if a_link is None:
+            print("!!!!!!!!!!!!!!!!!!")
+            f.write("!!!!!!!!!!!!!!!!!!\n")
+            a_text = h2.getText();
+        else:
+            a_text = a_link.getText();
+        print(a_text)
+        f.write(a_text + "\n")
 
